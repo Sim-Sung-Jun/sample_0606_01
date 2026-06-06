@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>건강한하루 · 영양제몰</title>
+
+<!-- ========================================================= -->
+<!-- ⬇️ GTM 설치 코드 자리 (5단계에서 G T M 만들면 여기 붙여넣기) -->
+<!-- <head> 최상단에 들어갈 GTM 스크립트 -->
+<!-- ========================================================= -->
+
+<style>
+  :root {
+    --green: #2f7d4f;
+    --green-dark: #1f5636;
+    --bg: #f7f5ef;
+    --card: #ffffff;
+    --text: #2c2c2a;
+    --muted: #6b6a64;
+    --border: #e3e0d6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Pretendard', -apple-system, 'Malgun Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: var(--green);
+    color: #fff;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  header .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  header .tag { font-size: 13px; opacity: 0.85; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 32px 24px; }
+  .hero { margin-bottom: 28px; }
+  .hero h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .hero p { color: var(--muted); font-size: 15px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.07); }
+  .thumb {
+    height: 150px;
+    background: #eef3ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+  }
+  .card-body { padding: 14px 16px; }
+  .card-body .name { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+  .card-body .price { color: var(--green-dark); font-weight: 700; font-size: 16px; }
+  .card-body .reviews { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 30px; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="logo">건강한하루</span>
+  <span class="tag">매일 챙기는 건강 습관</span>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>베스트 영양제</h1>
+    <p>실제 후기를 확인하고 나에게 맞는 영양제를 골라보세요.</p>
+  </div>
+
+  <div class="grid" id="product-grid"></div>
+</div>
+
+<footer>© 건강한하루 — 포트폴리오용 가상 쇼핑몰입니다.</footer>
+
+<script>
+  // 상품 데이터 (가상)
+  const PRODUCTS = [
+    { id: "vitd",   name: "비타민D 1000IU",   price: 49000, emoji: "☀️", reviews: 128 },
+    { id: "omega",  name: "프리미엄 오메가3", price: 58000, emoji: "🐟", reviews: 94  },
+    { id: "probio", name: "유산균 100억",      price: 42000, emoji: "🦠", reviews: 211 },
+    { id: "magn",   name: "마그네슘 플러스",   price: 39000, emoji: "💊", reviews: 67  }
+  ];
+
+  const grid = document.getElementById("product-grid");
+  PRODUCTS.forEach(p => {
+    const a = document.createElement("a");
+    a.className = "card";
+    a.href = `product.html?id=${p.id}`;
+    a.innerHTML = `
+      <div class="thumb">${p.emoji}</div>
+      <div class="card-body">
+        <div class="name">${p.name}</div>
+        <div class="price">${p.price.toLocaleString()}원</div>
+        <div class="reviews">리뷰 ${p.reviews}개</div>
+      </div>`;
+    grid.appendChild(a);
+  });
+</script>
+
+</body>
+</html>
